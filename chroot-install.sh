@@ -20,8 +20,8 @@ fi
 # setup timezone
 echo 'Setting up timezone'
 timedatectl set-ntp true
-ln -s /usr/share/zoneinfo/America/New_York /etc/localtime
-timedatectl set-timezone America/New_York
+ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+timedatectl set-timezone Europe/Berlin 
 hwclock --systohc
 
 # setup locale
@@ -32,7 +32,7 @@ echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 
 # setup hostname
 echo 'Setting up hostname'
-echo 'arch-virtualbox' > /etc/hostname
+echo 'arch' > /etc/hostname
 
 # build
 echo 'Building'
@@ -47,13 +47,6 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # install Xorg
 echo 'Installing Xorg'
 pacman -S --noconfirm xorg xorg-xinit xterm
-
-# install virtualbox guest modules
-echo 'Installing VB-guest-modules'
-pacman -S --noconfirm virtualbox-guest-modules-arch virtualbox-guest-utils
-
-# vbox modules
-echo 'vboxsf' > /etc/modules-load.d/vboxsf.conf
 
 # install dev envt.
 echo 'Installing dev environment'
